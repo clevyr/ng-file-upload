@@ -1,7 +1,7 @@
 /**!
  * AngularJS file upload/drop directive and service with progress and abort
  * @author  Danial  <danial.farid@gmail.com>
- * @version 3.3.4
+ * @version 3.3.5
  */
 (function () {
 
@@ -28,7 +28,7 @@ if (window.XMLHttpRequest && !window.XMLHttpRequest.__isFileAPIShim) {
 
 var clevyrFileUpload = angular.module('clevyrFileUpload', []);
 
-clevyrFileUpload.version = '3.3.4';
+clevyrFileUpload.version = '3.3.5';
 clevyrFileUpload.service('$upload', ['$http', '$q', '$timeout', function ($http, $q, $timeout) {
     function sendHttp(config) {
         config.method = config.method || 'POST';
@@ -586,7 +586,7 @@ var ngFileUpload = angular.module('ngFileUpload', []);
  * AngularJS file upload/drop directive and service with progress and abort
  * FileAPI Flash shim for old browsers not supporting FormData
  * @author  Danial  <danial.farid@gmail.com>
- * @version 3.3.4
+ * @version 3.3.5
  */
 
 (function() {
