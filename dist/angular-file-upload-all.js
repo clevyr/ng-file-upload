@@ -26,10 +26,10 @@ if (window.XMLHttpRequest && !window.XMLHttpRequest.__isFileAPIShim) {
     });
 }
 
-var angularFileUpload = angular.module('angularFileUpload', []);
+var clevyrFileUpload = angular.module('clevyrFileUpload', []);
 
-angularFileUpload.version = '3.3.4';
-angularFileUpload.service('$upload', ['$http', '$q', '$timeout', function ($http, $q, $timeout) {
+clevyrFileUpload.version = '3.3.4';
+clevyrFileUpload.service('$upload', ['$http', '$q', '$timeout', function ($http, $q, $timeout) {
     function sendHttp(config) {
         config.method = config.method || 'POST';
         config.headers = config.headers || {};
@@ -184,7 +184,7 @@ angularFileUpload.service('$upload', ['$http', '$q', '$timeout', function ($http
     };
 }]);
 
-angularFileUpload.directive('ngFileSelect', ['$parse', '$timeout', '$compile',
+clevyrFileUpload.directive('ngFileSelect', ['$parse', '$timeout', '$compile',
     function ($parse, $timeout, $compile) {
         return {
             restrict: 'AEC',
@@ -301,7 +301,7 @@ function linkFileSelect(scope, elem, attr, ngModel, $parse, $timeout, $compile) 
     }
 }
 
-angularFileUpload.directive('ngFileDrop', ['$parse', '$timeout', '$location', function ($parse, $timeout, $location) {
+clevyrFileUpload.directive('ngFileDrop', ['$parse', '$timeout', '$location', function ($parse, $timeout, $location) {
     return {
         restrict: 'AEC',
         require: '?ngModel',
@@ -311,14 +311,14 @@ angularFileUpload.directive('ngFileDrop', ['$parse', '$timeout', '$location', fu
     }
 }]);
 
-angularFileUpload.directive('ngNoFileDrop', function () {
+clevyrFileUpload.directive('ngNoFileDrop', function () {
     return function (scope, elem) {
         if (dropAvailable()) elem.css('display', 'none')
     }
 });
 
 //for backward compatibility
-angularFileUpload.directive('ngFileDropAvailable', ['$parse', '$timeout', function ($parse, $timeout) {
+clevyrFileUpload.directive('ngFileDropAvailable', ['$parse', '$timeout', function ($parse, $timeout) {
     return function (scope, elem, attr) {
         if (dropAvailable()) {
             var fn = $parse(attr['ngFileDropAvailable']);

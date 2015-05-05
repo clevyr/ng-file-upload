@@ -4,7 +4,7 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 	<servlet>
 		<servlet-name>file_upload</servlet-name>
-		<servlet-class>com.df.angularfileupload.FileUpload</servlet-class>
+		<servlet-class>com.df.clevyrFileUpload.FileUpload</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>file_upload</servlet-name>
@@ -12,7 +12,7 @@
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>s3_sign</servlet-name>
-		<servlet-class>com.df.angularfileupload.S3Signature</servlet-class>
+		<servlet-class>com.df.clevyrFileUpload.S3Signature</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>s3_sign</servlet-name>
@@ -35,7 +35,7 @@
 	</servlet-mapping>
 	<filter>
 		<filter-name>cors_filter</filter-name>
-		<filter-class>com.df.angularfileupload.CORSFilter</filter-class>
+		<filter-class>com.df.clevyrFileUpload.CORSFilter</filter-class>
 	</filter>
 	<filter-mapping>
 		<filter-name>cors_filter</filter-name>

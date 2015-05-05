@@ -1,4 +1,4 @@
-package com.df.angularfileupload;
+package com.df.clevyrFileUpload;
 
 import java.io.IOException;
 

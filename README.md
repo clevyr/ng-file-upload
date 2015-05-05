@@ -47,7 +47,7 @@ Table of Content:
 JS:
 ```js
 //inject angular file upload directives and services.
-var app = angular.module('fileUpload', ['angularFileUpload']);
+var app = angular.module('fileUpload', ['clevyrFileUpload']);
 
 app.controller('MyCtrl', ['$scope', '$upload', function ($scope, $upload) {
     $scope.$watch('files', function () {
@@ -219,7 +219,7 @@ You can place these two files beside `angular-file-upload-shim(.min).js` on your
 ##<a name="server"></a>Server Side
 
 * <a name="java"></a>**Java**
-You can find the sample server code in Java/GAE [here](https://github.com/danialfarid/angular-file-upload/blob/master/demo/src/com/df/angularfileupload/)
+You can find the sample server code in Java/GAE [here](https://github.com/danialfarid/angular-file-upload/blob/master/demo/src/com/df/clevyrFileUpload/)
 * <a name="spring"></a>**Spring MVC**
 [Wiki Sample](https://github.com/danialfarid/angular-file-upload/wiki/spring-mvc-example) provided by [zouroto](https://github.com/zouroto)
 * <a name="node"></a>**Node.js** 
@@ -317,7 +317,7 @@ If you have Node.js there is a separate github project created by [Nukul Bhasin]
 
 ##<a name="cors"></a>CORS
 To support CORS upload your server needs to allow cross domain requests. You can achive that by having a filter or interceptor on your upload file server to add CORS headers to the response similar to this:
-([sample java code](https://github.com/danialfarid/angular-file-upload/blob/master/demo/src/com/df/angularfileupload/CORSFilter.java))
+([sample java code](https://github.com/danialfarid/angular-file-upload/blob/master/demo/src/com/df/clevyrFileUpload/CORSFilter.java))
 ```java
 httpResp.setHeader("Access-Control-Allow-Methods", "POST, PUT, OPTIONS");
 httpResp.setHeader("Access-Control-Allow-Origin", "your.other.server.com");
