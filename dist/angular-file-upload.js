@@ -282,12 +282,12 @@ function linkFileSelect(scope, elem, attr, ngModel, $parse, $timeout, $compile) 
     	            evt.preventDefault()
     	        }
         	}
-        	
+
         	// fix for android native browser
         	if (navigator.userAgent.toLowerCase().match(/android/)) {
                 setTimeout(function() {
                 	clickAndAssign();
-                }, 0);        		
+                }, 0);
         	} else {
         		clickAndAssign();
         	}
@@ -579,11 +579,5 @@ function globStringToRegex(str) {
 }
 
 var ngFileUpload = angular.module('ngFileUpload', []);
-
-for (key in angularFileUpload) {
-    if (angularFileUpload.hasOwnProperty(key)) {
-        ngFileUpload[key] = angularFileUpload[key];
-    }
-}
 
 })();

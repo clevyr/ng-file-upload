@@ -282,12 +282,12 @@ function linkFileSelect(scope, elem, attr, ngModel, $parse, $timeout, $compile) 
     	            evt.preventDefault()
     	        }
         	}
-        	
+
         	// fix for android native browser
         	if (navigator.userAgent.toLowerCase().match(/android/)) {
                 setTimeout(function() {
                 	clickAndAssign();
-                }, 0);        		
+                }, 0);
         	} else {
         		clickAndAssign();
         	}
@@ -580,17 +580,11 @@ function globStringToRegex(str) {
 
 var ngFileUpload = angular.module('ngFileUpload', []);
 
-for (key in angularFileUpload) {
-    if (angularFileUpload.hasOwnProperty(key)) {
-        ngFileUpload[key] = angularFileUpload[key];
-    }
-}
-
 })();
 
 /**!
  * AngularJS file upload/drop directive and service with progress and abort
- * FileAPI Flash shim for old browsers not supporting FormData 
+ * FileAPI Flash shim for old browsers not supporting FormData
  * @author  Danial  <danial.farid@gmail.com>
  * @version 3.3.4
  */
@@ -623,7 +617,7 @@ if ((window.XMLHttpRequest && !window.FormData) || (window.FileAPI && FileAPI.fo
 			};
 		}
 	}
-	
+
 	patchXHR('open', function(orig) {
 		return function(m, url, b) {
 			initializeUploadListener(this);
@@ -673,7 +667,7 @@ if ((window.XMLHttpRequest && !window.FormData) || (window.FileAPI && FileAPI.fo
 			}
 		}
 	});
-	
+
 	function redefineProp(xhr, prop, fn) {
 		try {
 			Object.defineProperty(xhr, prop, {get: fn});
@@ -691,11 +685,11 @@ if ((window.XMLHttpRequest && !window.FormData) || (window.FileAPI && FileAPI.fo
 					cache: true, //removes the ?fileapiXXX in the url
 					complete: function(err, fileApiXHR) {
 						xhr.__completed = true;
-						if (!err && xhr.__listeners['load']) 
+						if (!err && xhr.__listeners['load'])
 							xhr.__listeners['load']({type: 'load', loaded: xhr.__loaded, total: xhr.__total, target: xhr, lengthComputable: true});
-						if (!err && xhr.__listeners['loadend']) 
+						if (!err && xhr.__listeners['loadend'])
 							xhr.__listeners['loadend']({type: 'loadend', loaded: xhr.__loaded, total: xhr.__total, target: xhr, lengthComputable: true});
-						if (err === 'abort' && xhr.__listeners['abort']) 
+						if (err === 'abort' && xhr.__listeners['abort'])
 							xhr.__listeners['abort']({type: 'abort', loaded: xhr.__loaded, total: xhr.__total, target: xhr, lengthComputable: true});
 						if (fileApiXHR.status !== undefined) redefineProp(xhr, 'status', function() {return (fileApiXHR.status == 0 && err && err !== 'abort') ? 500 : fileApiXHR.status});
 						if (fileApiXHR.statusText !== undefined) redefineProp(xhr, 'statusText', function() {return fileApiXHR.statusText});
@@ -715,7 +709,7 @@ if ((window.XMLHttpRequest && !window.FormData) || (window.FileAPI && FileAPI.fo
 						xhr.__total = e.total;
 						xhr.__loaded = e.loaded;
 						if (e.total === e.loaded) {
-							// fix flash issue that doesn't call complete if there is no response text from the server  
+							// fix flash issue that doesn't call complete if there is no response text from the server
 							var _this = this
 							setTimeout(function() {
 								if (!xhr.__completed) {
@@ -757,7 +751,7 @@ if ((window.XMLHttpRequest && !window.FormData) || (window.FileAPI && FileAPI.fo
 	function isInputTypeFile(elem) {
 		return elem[0].tagName.toLowerCase() === 'input' && elem.attr('type') && elem.attr('type').toLowerCase() === 'file';
 	}
-	
+
 	window.FormData = FormData = function() {
 		return {
 			append: function(key, val, name) {
@@ -790,7 +784,7 @@ if ((window.XMLHttpRequest && !window.FormData) || (window.FileAPI && FileAPI.fo
 		if (FileAPI.forceLoad) {
 			FileAPI.html5 = false;
 		}
-		
+
 		if (!FileAPI.upload) {
 			var jsUrl, basePath, script = document.createElement('script'), allScripts = document.getElementsByTagName('script'), i, index, src;
 			if (window.FileAPI.jsUrl) {
@@ -814,7 +808,7 @@ if ((window.XMLHttpRequest && !window.FormData) || (window.FileAPI && FileAPI.fo
 			FileAPI.hasFlash = hasFlash();
 		}
 	})();
-	
+
 	FileAPI.ngfFixIE = function(elem, createFileElemFn, bindAttr, changeFn, resetModel) {
 		if (!hasFlash()) {
 			throw 'Adode Flash Player need to be installed. To check ahead use "FileAPI.hasFlash"';
