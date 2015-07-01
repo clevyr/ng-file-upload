@@ -1,7 +1,8 @@
 /**!
  * AngularJS file upload/drop directive and service with progress and abort
  * @author  Danial  <danial.farid@gmail.com>
- * @version 10.0.0
+ * @author Edited by Coty Getzelman, from Clevyr. <coty-crg@live.com>
+ * @version 10.0.1
  */
 (function () {
 
@@ -28,7 +29,7 @@ if (window.XMLHttpRequest && !window.XMLHttpRequest.__isFileAPIShim) {
 
 var clevyrFileUpload = angular.module('clevyrFileUpload', []);
 
-clevyrFileUpload.version = '10.0.0';
+clevyrFileUpload.version = '10.0.1';
 clevyrFileUpload.service('$upload', ['$http', '$q', '$timeout', function ($http, $q, $timeout) {
     function sendHttp(config) {
         config.method = config.method || 'POST';
@@ -383,10 +384,22 @@ function linkDrop(scope, elem, attr, ngModel, $parse, $timeout, $location) {
         elem.removeClass(actualDragOverClass);
         actualDragOverClass = null;
         extractFiles(evt, function (files, rejFiles) {
+            //console.log(JSON.stringify(scope.files));
+            //console.log(scope.files); 
+            
+            if(!!scope.files)
+                scope.files.forEach(function(f){
+                   //console.log(f);  
+                   files.push(f); 
+                });
+            else{
+                //console.log('nothing'); 
+            }
+            
             updateModel($parse, $timeout, scope, ngModel, attr,
                 attr.ngFileChange || (attr.ngFileDrop && attr.ngFileDrop.indexOf('(') > 0), files, rejFiles, evt)
         }, $parse(attr.allowDir)(scope) != false, attr.multiple || $parse(attr.ngMultiple)(scope));
-    }, false);
+    }, false, scope);
 
     function calculateDragOverClass(scope, attr, evt) {
         var accepted = true;
@@ -408,7 +421,7 @@ function linkDrop(scope, elem, attr, ngModel, $parse, $timeout, $location) {
 
     function extractFiles(evt, callback, allowDir, multiple) {
         var files = [], rejFiles = [], items = evt.dataTransfer.items, processing = 0;
-
+        //console.log(evt); 
         function addFile(file) {
             if (isAccepted(scope, accept, file, evt)) {
                 files.push(file);
@@ -515,6 +528,7 @@ function dropAvailable() {
 }
 
 function updateModel($parse, $timeout, scope, ngModel, attr, fileChange, files, rejFiles, evt, noDelay) {
+ 
     function update() {
         if (ngModel) {
             $parse(attr.ngModel).assign(scope, files);
