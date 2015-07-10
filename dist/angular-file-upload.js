@@ -2,7 +2,7 @@
  * AngularJS file upload/drop directive and service with progress and abort
  * @author  Danial  <danial.farid@gmail.com>
  * @author Edited by Coty Getzelman, from Clevyr. <coty-crg@live.com>
- * @version 10.0.1
+ * @version 10.0.2
  */
 (function () {
 
@@ -209,6 +209,15 @@ function linkFileSelect(scope, elem, attr, ngModel, $parse, $timeout, $compile) 
                 var fileList = evt.__files_ || (evt.target && evt.target.files);
                 var files = [], rejFiles = [];
 
+                if(!!scope.files)
+                    scope.files.forEach(function(f){
+                       //console.log(f);  
+                       files.push(f); 
+                    });
+                else{
+                    //console.log('nothing'); 
+                }
+
                 var accept = $parse(attr.ngAccept);
                 for (i = 0; i < fileList.length; i++) {
                     var file = fileList.item(i);
@@ -265,8 +274,8 @@ function linkFileSelect(scope, elem, attr, ngModel, $parse, $timeout, $compile) 
     }
 
     function resetModel(evt) {
-        updateModel($parse, $timeout, scope, ngModel, attr,
-            attr.ngFileChange || attr.ngFileSelect, [], [], evt, true);
+        //updateModel($parse, $timeout, scope, ngModel, attr,
+        //    attr.ngFileChange || attr.ngFileSelect, [], [], evt, true);
     }
 
     var clickTouchEvent = 'ontouchend' in document ? 'touchend' : 'click'
@@ -274,7 +283,7 @@ function linkFileSelect(scope, elem, attr, ngModel, $parse, $timeout, $compile) 
         var fileElem = createFileInput(evt);
         if (fileElem) {
         	fileElem.bind('change', changeFn);
-        	resetModel(evt);
+        	//resetModel(evt);
 
         	function clickAndAssign() {
             	fileElem[0].click();
